@@ -17,8 +17,27 @@
           }
         }
     },
+    "serviceplanSkuName": {
+      "type": "string",
+      "defaultValue": "B1",
+      "allowedValues": [
+        "B1",
+        "B2",
+        "B3",
+        "S1",
+        "S2",
+        "S3",
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "metadata": {
+        "description": "Describes plan's pricing tier and capacity. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
+      }
+    }
     "variables": {
-        "hostingPlanName":"[concat(toLower(parameters('COMPANY_NAME')),'-plan')]",
+        "serviceplanName":"[concat(toLower(parameters('COMPANY_NAME')),'-plan')]",
         "siteName": "[concat(toLower(parameters('COMPANY_NAME')), '-', uniqueString(resourceGroup().id))]",
         "storageName":"[concat(toLower(parameters('COMPANY_NAME')), uniqueString(resourceGroup().id))]",
         "packageURL":"https://github.com/ciellos-dev/IFrameApp/raw/main/package.zip"
@@ -39,16 +58,13 @@
         "kind": "functionapp",
         "type": "Microsoft.Web/serverfarms",
         "location": "[resourceGroup().location]",
-        "sku": {
-         "name": "Y1",
-                "tier": "Dynamic",
-                "size": "Y1",
-                "family": "Y",
-                "capacity": 0
-        },
-        "properties": {
-          "name": "[variables('hostingPlanName')]"
-        }
+      "sku": {
+        "name": "[parameters('serviceplanSkuName')]"
+      },
+      "properties": {
+        "name": "[variables('serviceplanName')]",
+        "numberOfWorkers": 1
+      }
       },
       {
         "apiVersion": "2015-08-01",
@@ -56,11 +72,11 @@
         "type": "Microsoft.Web/sites",
         "location": "[resourceGroup().location]",
         "dependsOn": [
-          "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+          "[resourceId('Microsoft.Web/serverfarms', variables('serviceplanName'))]",
           "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]"
         ],
         "properties": {
-          "serverFarmId": "[variables('hostingPlanName')]",
+          "serverFarmId": "[variables('serviceplanName')]",
           "siteConfig": {
                     "appSettings": [
                         {
