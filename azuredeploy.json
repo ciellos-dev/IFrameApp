@@ -115,10 +115,7 @@
               "[concat('Microsoft.Web/sites/', variables('siteName'))]"
             ],
             "properties": {
-              "packageUri": "[variables('packageURL')]",
-              "setParameters": {
-                    "IIS Web Application Name": "[variables('siteName')]"
-                }
+              "packageUri": "[variables('packageURL')]"
             }
           }
         ]
