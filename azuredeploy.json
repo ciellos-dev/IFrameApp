@@ -75,6 +75,7 @@
           "[resourceId('Microsoft.Web/serverfarms', variables('serviceplanName'))]",
           "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]"
         ],
+        "kind": "app",
         "properties": {
           "serverFarmId": "[variables('serviceplanName')]",
           "siteConfig": {
@@ -90,16 +91,12 @@
                           "slotSetting": false
                         },
                         {
-                            "name": "FUNCTIONS_EXTENSION_VERSION",
-                            "value": "~1"
-                        },
-                        {
                             "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
                             "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageName')), '2015-05-01-preview').key1)]"
                         },
                         {
                             "name": "WEBSITE_NODE_DEFAULT_VERSION",
-                            "value": "6.5.0"
+                            "value": "6.9.1"
                         },
                         {
                             "name": "WEBSITE_CONTENTSHARE",
