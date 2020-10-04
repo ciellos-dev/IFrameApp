@@ -36,7 +36,6 @@
           }
         }
     },
-
     "variables": {
         "serviceplanName":"[concat(toLower(parameters('COMPANY_NAME')),'-plan')]",
         "siteName": "[concat(toLower(parameters('COMPANY_NAME')), '-', uniqueString(resourceGroup().id))]",
