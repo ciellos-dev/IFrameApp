@@ -18,11 +18,8 @@
         },
         "serviceplanSkuName": {
           "type": "string",
-          "defaultValue": "B1",
+          "defaultValue": "S1",
           "allowedValues": [
-            "B1",
-            "B2",
-            "B3",
             "S1",
             "S2",
             "S3",
@@ -39,7 +36,7 @@
     "variables": {
         "serviceplanName":"[concat(toLower(parameters('COMPANY_NAME')),'-plan')]",
         "siteName": "[concat(toLower(parameters('COMPANY_NAME')), '-webapp')]",
-        "storageName":"[concat(toLower(parameters('COMPANY_NAME')), uniqueString(resourceGroup().id))]",
+        "storageName":"[concat(toLower(parameters('COMPANY_NAME')), 'storage')]",
         "packageURL":"https://github.com/ciellos-dev/IFrameApp/raw/main/package.zip"
     },
     "resources": [
