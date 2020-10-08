@@ -36,7 +36,7 @@
     "variables": {
         "serviceplanName":"[concat(toLower(parameters('COMPANY_NAME')),'-plan')]",
         "siteName": "[concat(toLower(parameters('COMPANY_NAME')), '-webapp')]",
-        "storageName":"[concat(toLower(parameters('COMPANY_NAME')), 'storage')]",
+        "storageName":"[concat(toLower(parameters('COMPANY_NAME')), 'sa')]",
         "packageURL":"https://github.com/ciellos-dev/IFrameApp/raw/main/package.zip"
     },
     "resources": [
